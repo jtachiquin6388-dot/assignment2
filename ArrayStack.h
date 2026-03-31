@@ -11,26 +11,36 @@ private:
 
 public:
     void push(const T& value) {
-        // TODO
+        data.push_back(value);
+
+        return;
     }
 
     void pop() {
-        // TODO
+        if (empty()) {
+            throw std::out_of_range("Stack empty");
+        }
+
+        data.pop_back();
     }
 
     T top() const {
-        // TODO
-        return T();
+        if (empty()) {
+            throw std::out_of_range("Stack empty");
+
+        }
+        return data.back();
     }
 
     bool empty() const {
-        // TODO
-        return true;
+        if (data.empty()) {
+            return true;
+        }
+        return false;
     }
 
     int size() const {
-        // TODO
-        return 0;
+        return data.size();
     }
 };
 
