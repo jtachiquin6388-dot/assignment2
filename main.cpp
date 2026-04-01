@@ -84,11 +84,11 @@ int precedence(const string& op) {
 
 bool isValidPostfix(const vector<Token>& tokens) {
     int nums = 0;
-    //int maxInARow = 0;
+
     for (const auto& token : tokens) {
         if (isNumber(token.value)) {
             nums++;
-            //numsInARow++;
+
         }
         else if (isOperator(token.value)) {
             if (nums < 2) {
@@ -108,8 +108,42 @@ bool isValidPostfix(const vector<Token>& tokens) {
 }
 
 bool isValidInfix(const vector<Token>& tokens) {
-    // TODO
-    return false;
+    int parenthesis = 0;
+
+    bool numIsPrev = false;
+
+    for (const auto& token : tokens) {
+        if (isNumber(token.value)) {
+            if (numIsPrev) {
+                return false;
+            }
+            numIsPrev = true;
+        }
+        else if (isOperator(token.value)) {
+            if (!numIsPrev) {
+                return false;
+            }
+            numIsPrev = false;
+        }
+        else if (token.value == "(") {
+            if (numIsPrev) {
+                return false;
+            }
+            parenthesis++;
+        }
+        else if (token.value == ")") {
+            if (!numIsPrev) {
+                return false;
+            }
+            parenthesis--;
+
+        }
+    }
+
+    if (parenthesis != 0) {
+        return false;
+    }
+    return true;
 }
 
 // Conversion
@@ -159,12 +193,6 @@ double evalPostfix(const vector<Token>& tokens) {
 // Main
 
 int main() {
-
-
-
-
-
-
 
     /*
     string line;
