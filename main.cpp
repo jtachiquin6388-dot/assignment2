@@ -22,6 +22,16 @@ struct Token {
 bool isOperator(const string& s) {
     return s == "+" || s == "-" || s == "*" || s == "/";
 }
+bool isParenthesis(const string& s) {
+    return s == ")" || s == "(";
+}
+
+bool isNumber(const string& s) {
+    return isdigit(s[0]);
+}
+
+
+
 // Tokenizer
 
 vector<Token> tokenize(const string& line) {
@@ -44,10 +54,14 @@ vector<Token> tokenize(const string& line) {
             tokens.push_back(token);
             token = "";
         }
-        else if (line[i] == ')' || line[i] == '(') {
+        else if (isParenthesis(token)) {
             tokens.push_back(token);
             token = "";
         }
+    }
+
+    if ( isNumber(token)) {
+        tokens.push_back(token);
     }
 
     return tokens;
@@ -56,14 +70,40 @@ vector<Token> tokenize(const string& line) {
 // Helpers
 
 int precedence(const string& op) {
-    // TODO
+    if ( op == "*" || op == "/") {
+        return 1;
+    }
+    else if ( op == "+" || op == "-") {
+        return 2;
+    }
     return 0;
 }
+
 
 // Detection
 
 bool isValidPostfix(const vector<Token>& tokens) {
-    // TODO
+    int nums = 0;
+    //int maxInARow = 0;
+    for (const auto& token : tokens) {
+        if (isNumber(token.value)) {
+            nums++;
+            //numsInARow++;
+        }
+        else if (isOperator(token.value)) {
+            if (nums < 2) {
+                return false;
+            }
+            nums--;
+        }
+        else {
+            return false;
+        }
+    }
+
+    if (nums == 1) {
+        return true;
+    }
     return false;
 }
 
@@ -84,13 +124,45 @@ vector<Token> infixToPostfix(const vector<Token>& tokens) {
 
 double evalPostfix(const vector<Token>& tokens) {
     ArrayStack<double> stack;
-    // TODO
-    return 0.0;
+
+    for (const auto& token : tokens) {
+        if (isNumber(token.value)) {
+            stack.push(stod(token.value));
+        }
+        else if (isOperator(token.value)) {
+            double num1 = stack.top();
+            stack.pop();
+
+            double num2 = stack.top();
+            stack.pop();
+
+            double result;
+            if (token.value == "*") {
+                result = num1 * num2;
+            }
+            else if (token.value == "/") {
+                result = num2 / num1;
+            }
+            else if (token.value == "+") {
+                result = num1 + num2;
+            }
+            else if (token.value == "-") {
+                result = num2 - num1;
+            }
+
+            stack.push(result);
+        }
+    }
+    return stack.top();
 }
 
 // Main
 
 int main() {
+
+
+
+
 
 
 
