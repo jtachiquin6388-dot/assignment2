@@ -12,21 +12,48 @@ using namespace std;
 
 struct Token {
     string value;   // number, operator, or parenthesis
+
+    Token(const string& v) : value(v) {}
+
+
 };
 
+// Helper
+bool isOperator(const string& s) {
+    return s == "+" || s == "-" || s == "*" || s == "/";
+}
 // Tokenizer
 
 vector<Token> tokenize(const string& line) {
     vector<Token> tokens;
-    // TODO
+
+    string token = "";
+
+    for (int i = 0; i < line.length(); i++) {
+
+
+        if (!isspace(line[i])) {
+            token += line[i];
+        }
+
+        if (isspace(line[i]) && !token.empty()) {
+            tokens.push_back(token);
+            token = "";
+        }
+        else if ( isOperator(token) ) {
+            tokens.push_back(token);
+            token = "";
+        }
+        else if (line[i] == ')' || line[i] == '(') {
+            tokens.push_back(token);
+            token = "";
+        }
+    }
+
     return tokens;
 }
 
 // Helpers
-
-bool isOperator(const string& s) {
-    return s == "+" || s == "-" || s == "*" || s == "/";
-}
 
 int precedence(const string& op) {
     // TODO
@@ -64,6 +91,10 @@ double evalPostfix(const vector<Token>& tokens) {
 // Main
 
 int main() {
+
+
+
+    /*
     string line;
     getline(cin, line);
 
@@ -89,4 +120,5 @@ int main() {
     }
 
     return 0;
+    */
 }
