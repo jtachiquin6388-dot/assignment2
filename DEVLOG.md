@@ -24,9 +24,18 @@
 ### Entry 3
 **Date:** 2026-03-31
 **Entry Type:** Bug Fix 
-**Task worked on:** Worked on the idValidPostfix
+**Task worked on:** Worked on the isValidPostfix
 **Issue:** Some of the invalid postfix were being evaluated as valid
 **What I tried:** I identified the key features of the post-fix and printed out the tokens. 
-**Fix:** There was an issues with the tokenizer funtion where the final number may not be identifies as a token, affect the isValidPostfix function. 
+**Fix:** There was an issue with the tokenizer function where the final number may not be identified as a token, affecting the isValidPostfix function. 
 
 ---
+
+### Entry 4
+**Date:** 2026-03-31
+**Entry Type:** Bug Fix
+**Task worked on:** Worked on the isValidInfix
+**Issue:** Some of the infized were not evaluating to the expected value
+**What I tried:** Observed the common patterns in the expressions that were evaluated incorrectly. 
+From the I began editing the conditions with parentheses and operators. 
+**Fix:** There were additional conditions within the parentheses and operator branch necessary for the infix to be evaluated correctly. 
