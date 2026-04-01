@@ -35,7 +35,24 @@
 **Date:** 2026-03-31
 **Entry Type:** Bug Fix
 **Task worked on:** Worked on the isValidInfix
-**Issue:** Some of the infized were not evaluating to the expected value
-**What I tried:** Observed the common patterns in the expressions that were evaluated incorrectly. 
-From the I began editing the conditions with parentheses and operators. 
+**Issue:** Some of the infixed were not evaluating to the expected value
+**What I tried:** Observed the common patterns in the expressions that were evaluated incorrectly. From there, I began editing the conditions with parentheses and operators. 
 **Fix:** There were additional conditions within the parentheses and operator branch necessary for the infix to be evaluated correctly. 
+
+---
+### Entry 5
+**Date:** 2026-03-31
+**Entry Type:** Bug Fix
+**Task worked on:** Worked on the in
+**Issue or decision:** The postfix output was incorrect, only the first token was appearing in the result and the operators were not correctly ordered.
+**What I tried:** I tried to observe why only one token was being shown then began working on why the operations were being incorrectly ordered
+**Fix:** I double-checked any incorrect syntax and real
+**Commit(s):**
+---
+### Entry 6
+**Date:** 2026-03-31
+**Entry Type:** Engineering Decision
+**Task worked on:** multiple helper functions 
+**decision:** Create helper functions to simplify the logic of the code. 
+**What I tried:** I found that there were recurring conditions that needed to be condensed.
+**Resolution:** I put that code within functions to create more readable, simplified code. 
